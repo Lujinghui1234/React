@@ -1,2 +1,2 @@
 # React-Note
-## This is a repositories about React.
+## This is a repositoriy about React.
