@@ -29,8 +29,9 @@ const Son = forwardRef((prop:any,ref:any):ReactElement=>{
 ```
 import {useMemo} from 'react;
 const list = useMemo(calculateValue,[dependencies]);
-//useMemo第一个参数是函数（没有形参），第二个参数是依赖项，依赖项中任意一个的值与上次render相比发生了变化（数组是浅比较），才会重新执行calculateValue函数，返回新的值，否则返回上次calculateValue返回的值。
 ```
+第一个参数是函数（没有形参），第二个参数是依赖项，依赖项中任意一个的值与上次render相比发生了变化（数组是浅比较），才会重新执行calculateValue函数，返回新的值，否则返回上次calculateValue返回的值。
+第二个参数如果是空数组，只会记住第一次的计算，某些场景下这样使用useMemo就没有意义了。
 ### useCallBack:
 ```
 import {useCallBack} from 'react;
