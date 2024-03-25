@@ -37,6 +37,9 @@ const list = useMemo(calculateValue,[dependencies]);
 import {useCallBack} from 'react;
 const list = useCallBack(fn,[dependencies]);
 //useCallBack第一个参数是想要缓存的函数；第二个参数是依赖项，可以是props、state或组件中的任意变量，任意一个依赖项发生变化，将会重新执行，返回一个新的函数。否则返回上次render返回的fn。
+
+useCallback可适用场景：
+父组件通过props给子组件传递函数，子组件使用React.Memo包裹，不想产生不必要的rerender，此时父组件中的这个函数使用useCallBack包裹，目的是缓存函数，每次props传的都是同一个函数，React.Memo浅比较时发现函数的引用地址不变，子组件才不会rerender。
 ```
 注意①：useMemo的使用场景如下,除此之外没有必要使用。
 ![image](https://github.com/Lujinghui1234/React/assets/109168485/bc75bb85-ff13-4276-8fa4-1a6d87988181)
