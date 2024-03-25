@@ -43,7 +43,7 @@ const list = useCallBack(fn,[dependencies]);
 
 注意②：useCallBack 的使用场景如下，除此之外没有必要使用，不但没有意义，而且代码可读性差。
 ![image](https://github.com/Lujinghui1234/React/assets/109168485/67ee5076-e8fd-4072-a884-35c4098ef996)
-## memo
+## memo  (使用Object.is，默认是浅比较)
 当组件的props与上次相比发生变化，才会re-render该组件，否则不会re-render。通常与useMemo或useCallBack搭配使用。
 ```
 const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
