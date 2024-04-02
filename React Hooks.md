@@ -52,6 +52,41 @@ useCallback可适用场景：
 const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
 //第一个参数是组件名称；第二个可选参数是布尔值，比较上次和这次的props是否相同（使用Object.is，默认是浅比较），为true时不会re-render该组件，为false会re-render。
 ```
+## useContext   嵌套组件传递数据使用
+```
+//父组件：
+export const ListContext = createContext(undefined);//记得要导出context，不然子组件获取不到
+export default function GrandPa() {
+  const [list, setList] = useState<any>([{ name: "rose", age: 18 }]);
+
+  const handelClick = () => {//修改context的值
+    const newItem = { name: "jack", age: 20 };
+    setList((prev: any) => [...prev, newItem]);
+  };
+
+  return (
+    <ListContext.Provider value={list}>//传递父组件中的状态数据
+      <Farther />
+      <button onClick={handelClick}>button</button>
+    </ListContext.Provider>
+  );
+};
+
+//子组件：
+import { useContext } from "react";
+import Son from "../son";
+import { ListContext } from "../grandPa";//记得引入context
+
+export default function Farther() {
+  const context = useContext(ListContext);
+  console.log(context);//可以获取到传递过来的context数据
+  return (
+      <Son />
+  );
+}；
+```
+使用useContext，子组件不能直接修改context数据，可以通过传递回调函数通知父组件修改，本质上还是传递回调函数，和useContext没有关系。
+
 
 
 
