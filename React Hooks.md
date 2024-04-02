@@ -8,20 +8,31 @@
 import {useRef} from 'react;
 const Far = () => ReactElement {
     const ref = useRef({a:1});
-    return (<Son ref={ref} data='123'/>)
+    return (
+      <>
+      <Son ref={ref} />
+      <button onClick={() => console.log(ref.current.data, "data===")}>
+        Click
+      </button>
+     </>
+    )
 }
 ```
 子组件：
 
 ```js
 import {forwardRef,useImperativeHandel} from 'react;
-const Son = forwardRef((prop:any,ref:any):ReactElement=>{
-    const data = '一些传给父组件的数据……';
-    useImperativeHandel(ref,data);
+const Son = forwardRef((props:any,ref:any):ReactElement=>{//props一定要写来占位，不然浏览器会报错
+    const data = 'some data……';
+    useImperativeHandel(ref,()=>{
+      return {
+         data
+      }
+    };
     return(<div>123</div>)
 })
 ```
-常见错误：子组件要用forwardRef包裹，不然会报错。
+常见错误：子组件要用forwardRef包裹，不然会报错，且props一定要写来占位，不然浏览器会报错。
 
 ## useMemo & useCallBack
 这两个是为了做性能优化的hook,避免组件多次不必要的re-render。useMemo是缓存计算结果，useCallBack是缓存函数，两个都是常常与memo搭配使用。
