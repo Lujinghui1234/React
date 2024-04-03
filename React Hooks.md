@@ -6,7 +6,8 @@
 #### 优点：
    1，re-render时不会创建一个新的ref对象；
    2，如果修改ref.current的值，component不会re-render，这个优点同时也是缺点
-#### 缺点：正是因为修改ref.current，component不会re-render，所以ref不适用于屏幕渲染，因为screen不会update.
+#### 缺点：
+正是因为修改ref.current，component不会re-render，所以ref不适用于屏幕渲染，因为screen不会update.
    父组件：
 ```js
 import {useRef} from 'react;
