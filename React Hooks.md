@@ -77,7 +77,7 @@ const Farther = forwardRef((props: any, ref: any) => {
         list,
       };
     },
-    [data]//依赖项永远不发生变化，所以即使点击按钮list发生变化了，回传给父组件的list也永远不变。
+    [data]//依赖项永远不发生变化，即便list发生变化了，回传给父组件的list也永远不变；只有data发生变化了list才会变化。
   );
 
   return (<button onClick={handelClick}>farther button</button> );
