@@ -33,7 +33,60 @@ const Son = forwardRef((props:any,ref:any):ReactElement=>{//props一定要写来
 })
 ```
 常见错误：子组件要用forwardRef包裹，不然会报错，且props一定要写来占位，不然浏览器会报错。
+## useImperativeHandle
+这个hook是为了搭配useRef使用，子组件用来向父组件回传数据的
+```
+用法：
+useImperativeHandle(
+    ref,//param 1:父组件传递的ref
+    () => {
+      return {
+        list,
+      };
+    },//param 2:回传给父组件的函数
+    [data]//param 3:可选的依赖项，依赖项不变则回传的数据不变
+  );
+```
+```
+demo:
+父组件：
+import { useRef } from "react";
+export default function GrandPa() {
+  const farRef = useRef<any>(list);
+  return (
+    <>
+      <Farther ref={farRef} />
+      <button onClick={() => console.log(farRef.current.list, "data===")}>
+        grandPa button
+      </button>
+    </>
+  );
+};
+子组件：
+import { useImperativeHandle, forwardRef, useState } from "react";
+const Farther = forwardRef((props: any, ref: any) => {
+  const [data, setData] = useState([1, 2, 3]);
+  const [list, setList] = useState(["apple", "banana"]);
 
+  const handelClick = () => {
+    setList([...list, "pear"]);
+  };
+
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        list,
+      };
+    },
+    [data]//依赖项永远不发生变化，所以即使点击按钮list发生变化了，回传给父组件的list也永远不变。
+  );
+
+  return (<button onClick={handelClick}>farther button</button> );
+});
+
+export default Farther;
+```
 ## useMemo & useCallBack
 这两个是为了做性能优化的hook,避免组件多次不必要的re-render。useMemo是缓存计算结果，useCallBack是缓存函数，两个都是常常与memo搭配使用。
 ### useMemo:
