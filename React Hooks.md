@@ -35,8 +35,8 @@ const Son = forwardRef((props:any,ref:any):ReactElement=>{//props一定要写来
 常见错误：子组件要用forwardRef包裹，不然会报错，且props一定要写来占位，不然浏览器会报错。
 ## useImperativeHandle
 这个hook是为了搭配useRef使用，子组件用来向父组件回传数据的
-```
 用法：
+```
 useImperativeHandle(
     ref,//param 1:父组件传递的ref
     () => {
@@ -44,11 +44,11 @@ useImperativeHandle(
         list,
       };
     },//param 2:回传给父组件的函数
-    [data]//param 3:可选的依赖项，依赖项不变则回传的数据不变
+    [dependencies]//param 3:可选的依赖项，依赖项不变则回传的数据不变
   );
 ```
-```
 demo:
+```
 父组件：
 import { useRef } from "react";
 export default function GrandPa() {
