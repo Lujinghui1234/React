@@ -38,6 +38,8 @@ const Son = forwardRef((props:any,ref:any):ReactElement=>{//props一定要写来
 })
 ```
 常见错误：子组件要用forwardRef包裹，不然会报错，且props一定要写来占位，不然浏览器会报错。
+Q:既然useRef有明确的缺点，那适用于什么场景？
+A：1，操作DOM   2，存储定时器    3，存储一些JSX中不会用到的数据
 ## useImperativeHandle
 这个hook是为了搭配useRef使用，子组件用来向父组件回传数据的
 用法：
