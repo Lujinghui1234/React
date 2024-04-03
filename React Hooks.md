@@ -3,7 +3,7 @@
 ### 1，在函数组件的顶级作用域或其他hook中使用hook
 ### 2，避免在循环、条件中使用hook，也就是无条件调用hook
 ## useRef
-### 优点：
+#### 优点：
    1，re-render时不会创建一个新的ref对象；
    2，如果修改ref.current的值，component不会re-render.
    
@@ -16,9 +16,7 @@ const Far = () => ReactElement {
     return (
       <>
       <Son ref={ref} />
-      <button onClick={handel}>
-        Click
-      </button>
+      <button onClick={handel}>Click</button>
      </>
     )
 }
@@ -56,12 +54,11 @@ demo:
 import { useRef } from "react";
 export default function GrandPa() {
   const farRef = useRef<any>(list);
+  const handel = () => console.log(farRef.current.list, "data===");
   return (
     <>
       <Farther ref={farRef} />
-      <button onClick={() => console.log(farRef.current.list, "data===")}>
-        grandPa button
-      </button>
+      <button onClick={handel}>grandPa button</button>
     </>
   );
 };
@@ -82,7 +79,7 @@ const Farther = forwardRef((props: any, ref: any) => {
         list,
       };
     },
-    [data]//依赖项永远不发生变化，即便list发生变化了，回传给父组件的list也永远不变；只有data发生变化了list才会变化。
+    [data]//这个依赖项是永远不变的，所以即便list发生变化了，回传给父组件的list也永远不变；只有这个依赖项变了list才会变化。
   );
 
   return (<button onClick={handelClick}>farther button</button> );
@@ -91,7 +88,7 @@ const Farther = forwardRef((props: any, ref: any) => {
 export default Farther;
 ```
 ## useMemo & useCallBack
-这两个是为了做性能优化的hook,避免组件多次不必要的re-render。useMemo是缓存计算结果，useCallBack是缓存函数，两个都是常常与memo搭配使用。
+这两个hook都是做性能优化的,避免组件多次不必要的re-render。useMemo是缓存计算结果，useCallBack是缓存函数，两个都是常常与memo搭配使用。
 ### useMemo:
 ```
 import {useMemo} from 'react;
