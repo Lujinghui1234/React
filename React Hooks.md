@@ -40,9 +40,7 @@ const Son = forwardRef((props:any,ref:any):ReactElement=>{//props一定要写来
 useImperativeHandle(
     ref,//param 1:父组件传递的ref
     () => {
-      return {
-        list,
-      };
+      return {};
     },//param 2:回传给父组件的函数
     [dependencies]//param 3:可选的依赖项，依赖项不变则回传的数据不变
   );
