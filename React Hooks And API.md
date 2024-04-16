@@ -1,4 +1,4 @@
-# Hook 使用
+# Hook
 ## Hook使用规则：
 ### 1，在函数组件的顶级作用域或其他hook中使用hook
 ### 2，避免在循环、条件中使用hook，也就是无条件调用hook
@@ -120,14 +120,6 @@ useCallback可适用场景：
 
 注意②：useCallBack 的使用场景如下，除此之外没有必要使用，不但没有意义，而且代码可读性差。
 ![image](https://github.com/Lujinghui1234/React/assets/109168485/67ee5076-e8fd-4072-a884-35c4098ef996)
-## memo  (使用Object.is，默认是浅比较)
-当组件的props与上次相比发生变化，才会re-render该组件，否则不会re-render。通常与useMemo或useCallBack搭配使用。
-```
-const MemoizedComponent = memo(
-SomeComponent,//param 1:Component name
- arePropsEqual?)//optional param 2:boolean
-//param 2用于比较上次和这次的props是否相同（使用Object.is，默认是浅比较），为true时不会re-render该组件，为false会re-render。
-```
 ## useContext   嵌套组件传递数据使用
 ```
 //父组件：
@@ -162,7 +154,15 @@ export default function Farther() {
 }；
 ```
 使用useContext，子组件不能直接修改context数据，可以通过传递回调函数通知父组件修改，本质上还是传递回调函数，和useContext没有关系。
-
+# API
+## memo  (使用Object.is，默认是浅比较)
+当组件的props与上次相比发生变化，才会re-render该组件，否则不会re-render。通常与useMemo或useCallBack搭配使用。
+```
+const MemoizedComponent = memo(
+SomeComponent,//param 1:Component name
+ arePropsEqual?)//optional param 2:boolean
+//param 2用于比较上次和这次的props是否相同（使用Object.is，默认是浅比较），为true时不会re-render该组件，为false会re-render。
+```
 
 
 
