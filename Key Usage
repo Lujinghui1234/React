@@ -1,0 +1,1 @@
+When mapping data in React.JSX,it needs to add key for the element,but it's not kind to use index for key.
