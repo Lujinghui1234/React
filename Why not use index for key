@@ -1,0 +1,23 @@
+1,当在JSX中render列表，常见的做法是map一个数组然后render.
+```
+const list = [{id:'1',name:'rose'},{id:'2',name:'rose1'}];
+
+//this example will block issue,it can be fixed by using item.id as key.
+return (
+<>
+ {list.map(item:any,index)=>(
+  <h5 key={index}> {item.name} </h5>
+ )}
+</>
+)
+```
+2, 为什么使用索引作为key会引发Bug?该问题可以延申至React中的虚拟DOM和diff算法
+
+如果列表不涉及删、改等操作，使用索引作为key一般不会引发Bug,反之，假设对列表元素进行删除、移动、新增等操作，re-render时列表的顺序会出错。为什么？
+  2.1 原因一： React中的虚拟DOM和真实DOM
+    2.1.1 虚拟DOM实际是一个对象，可以React.createElement创建然后打印出来看到，对象里有很多属性比如type、props、$$typeof，type表示节点类型，props中包含节点各种属性。
+    2.1.2真实DOM中挂着比虚拟DOM更多的属性，所以虚拟DOM比真实DOM消耗的内存小很多。
+  2.2 原因二：diff算法
+      当更新节点时，会创建一个新的虚拟DOM和旧的虚拟DOM对比，新旧虚拟DOM对节点进行对比，key和type相同才有可能复用该节点。如果用索引作为key值，删除元素时会删错，用唯一的id则不出错
+
+3, 扩展：隐藏和删除DOM有什么区别?性能上哪个更好？
