@@ -2,7 +2,7 @@
 ```
 const list = [{id:'1',name:'rose'},{id:'2',name:'rose1'}];
 
-//this example will block issue,it can be fixed by using item.id as key.
+//this example will trigger issue,it can be fixed by using item.id as key.
 return (
 <>
  {list.map(item:any,index)=>(
