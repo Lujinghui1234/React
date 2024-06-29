@@ -154,6 +154,8 @@ export default function Farther() {
 }；
 ```
 使用useContext，子组件不能直接修改context数据，可以通过传递回调函数通知父组件修改，本质上还是传递回调函数，和useContext没有关系。
+## useState
+   useState原理是什么？？多次连续setState如何确保set上准确的值，下一次setState使用上次set的值
 # API
 ## memo  (使用Object.is，默认是浅比较)
 当组件的props与上次相比发生变化，才会re-render该组件，否则不会re-render。通常与useMemo或useCallBack搭配使用。
