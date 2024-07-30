@@ -154,8 +154,12 @@ export default function Farther() {
 }；
 ```
 使用useContext，子组件不能直接修改context数据，可以通过传递回调函数通知父组件修改，本质上还是传递回调函数，和useContext没有关系。
-## useState
-   useState原理是什么？？多次连续setState如何确保set上准确的值，下一次setState使用上次set的值
+## useState 原理是什么,多次连续setState如何做的，确保下一次拿的是上次更新后的值https://juejin.cn/post/7035104240217358350
+      1, 不讨论class/function的情况下，react中setState有同步更新也有异步更新的情况
+      2，react中有个变量isBatchingUpdates判断是直接更新还是放在队列中延迟更新，默认是false表示同步更新，假设遇到事件处理函数，改为true变成异步更新，注意是react可控制的事件处理函数才是异步，一些react不可控的如Promise、setTimeout、setInterval还是同步更新
+      3，setState后马上获取状态值不会是最新值，可以通过setState传入更新器函数解决  this.setState((prev)=>({...prev,count:prev.count+1}))
+      4, 也可以通过setTimeout或async/await解决，但属于强行扭转，没有意义且浪费性能
+      5，react在队列中操作多次连续setState是如何做的：Object.assign()合并多个setState，新状态覆盖旧状态，最终只会执行一次，并且有用防抖实现优化
 # API
 ## memo  (使用Object.is，默认是浅比较)
 当组件的props与上次相比发生变化，才会re-render该组件，否则不会re-render。通常与useMemo或useCallBack搭配使用。
