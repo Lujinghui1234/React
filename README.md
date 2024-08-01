@@ -5,8 +5,9 @@
     4，function组件没有生命周期钩子函数，在React V16.8之后用hooks去模拟class组件的钩子
     5，class组件有constructor,constructor里面存储状态this.state={count:0},this.xxx，this指向当前组件实例对象,通过this.state.xxx=xxx更新状态值
     6，function组件没有constructor，所以没有this,其指向undefined;状态保存在useState这个hook中，通过setState更新状态值
-## 2.React事件机制  https://juejin.cn/post/6955636911214067720?searchId=202407151638456BB6FC7DEE51D408AC7F#heading-32
-    1，我们在jsx中绑定的事件，根本就没有注册在真实dom身上，而是被统一绑在了document身上
+## 2.React事件机制  
+    https://juejin.cn/post/6955636911214067720?searchId=202407151638456BB6FC7DEE51D408AC7F#heading-32
+    1，我们在jsx中绑定的事件，其实没有注册在真实dom身上，而是被统一绑在了document身上
     2，真实的dom事件，已经被react底层替换成了空函数
     3，我们在react绑定的事件，比如onChange，在document上可能会有多个事件与之对应
     4，在react中，我们绑定的事件onClick等，并不是原生的事件，而是由原生事件合成的react合成事件，比如click合成为onClick事件，blur、change、input、keydown、keyup合成为onChange事件
