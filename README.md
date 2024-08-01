@@ -13,4 +13,4 @@
     4，在react中，我们绑定的事件onClick等，并不是原生的事件，而是由原生事件合成的react合成事件，比如click合成为onClick事件，blur、change、input、keydown、keyup合成为onChange事件
     5，react为什么要设计这种合成事件模式？
         1，因为将事件绑定在document上统一管理，如果事件分别注册在dom上，就会造成不可控的情况
-        2，react想实现一个全浏览器框架，就要做到浏览器一致性，抹平浏览器之间的差异
+        2，react想实现一个全浏览器框架，那么就要提供全浏览器一致性的事件系统，抹平浏览器之间的差异
