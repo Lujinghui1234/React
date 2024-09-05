@@ -90,4 +90,20 @@ if(someCondition){
 };
 ```
 以上代码报错是因为React不允许在条件判断中调用useState的setter函数。解决方法一：不使用useState;二：不在条件判断中使用useState。
+## 13.Vite脚手架npm i报错 A complete log of this run can be found in C:\users\AppData\local\npmm_cache\_log_***.jpg
+解决思路：推荐第二种，安装依赖pnpm是优先于npm的，速度也更快
+
+```
+一，用npm
+1、删除掉原有的node_modules
+2、npm cache clean --force 清除缓存
+3、重新运行 npm i 安装依赖
+```
+
+```
+二，用pnpm
+1、npm i pnpm -g
+2、pnpm install
+3、pnpm run dev
+```
 
