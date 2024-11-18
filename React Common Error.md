@@ -57,3 +57,19 @@ if(someCondition){
 ```
 以上代码报错是因为React不允许在条件判断中调用useState的setter函数。解决方法一：不使用useState;二：不在条件判断中使用useState。
 
+## 6. React中父组件更新子组件也更新，但有时候子组件并没有更新，想让子组件强制刷新
+给子组件传入key，绑定父组件中可以更新的值，一旦父组件这个值更新，子组件会强制刷新
+```
+const [itemKey, setItemKey] = useState<string>("");
+
+const Farther = ()=>{
+    return (
+    <>
+        <Child key={itemKey} />
+        <button onClick={()=>setItemKey("update")}>btn</button>
+    </>
+    )
+}
+
+```
+
