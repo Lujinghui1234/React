@@ -73,3 +73,12 @@ const Farther = ()=>{
 
 ```
 
+## 7. 组件引入的外部资源，组件更新时资源不更新
+    eg: 从util.ts引入含有国际化转换的字段,切换语言时组件更新了，但import的外部资源t("dashboard.newOffer")不会再次引入，所以语言没有切换成功，还是上次的语言
+    ```
+    const { t } = useI18n();
+     t("dashboard.newOffer")
+    ```
+    解决：把t("dashboard.newOffer")放在组件内部，组件更新时也会更新
+    
+
