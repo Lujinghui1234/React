@@ -21,5 +21,6 @@ return (
   2.2 原因二：diff算法
       当更新节点时，会创建一个新的虚拟DOM和旧的虚拟DOM对其中的节点进行对比，key和type相同才有可能复用该节点。如果用索引作为key值，删除元素时会删错，用唯一的id则不出错。
 
-3, 扩展：隐藏和删除DOM有什么区别?性能上哪个更好？
+3，React也不建议直接使用数组作为key，因为一旦数组发生变化时，会产生稳定性和重新渲染问题
+4, 扩展：隐藏和删除DOM有什么区别?性能上哪个更好？
    传送门：https://stackoverflow.com/questions/69009266/react-hiding-vs-removing-components
